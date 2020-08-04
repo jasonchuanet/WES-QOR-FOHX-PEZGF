@@ -1,0 +1,36 @@
+Usefukl Linlks
+     https://github.com/Automattic/jetpack/blob/e87551f16931c5d585e97b10ad841a92723129eb/modules/shortlinks.php
+     "23456789abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ"
+     https://lowrey.me/encoding-decoding-base-62-in-es6-javascript/
+     
+https://wp.me/ p aErsY - Bq
+
+
+https://l4s.me/p-2117
+Letter    
+     s - slug - Assume
+     p - post - A (Article)
+     P - Page - P (Page)
+     a - attachment - M (Layers.Media)
+ 
+     Possible Control Characters:
+          Any Uppercase
+          -
+     All url Characters: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~:/?#[]@!$&’()*+,;%
+https://layers.media/?p=2117 //Page with ID 2117
+
+class-of-2024-meets-early-on-instagram
+
+Both go to the same place
+     https://wp.me/paErsY-Bq
+     https://wp.me/saErsY-class-of-2024-meets-early-on-instagram
+The p - postID
+The s - slug
+The a - attachment
+Aiming for:
+     https://l4s.me/ABq
+     https://l4s.me/class-of-2024-meets-early-on-instagram
+     Assume slug
+
+https://wp.me/saErsY-scantron
+
