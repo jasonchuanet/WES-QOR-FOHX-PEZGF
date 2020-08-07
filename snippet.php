@@ -1,7 +1,7 @@
 <?php
 /*
 l4s.me link shortening module
-PHP Snippet to be used make compataable shortlinks
+PHP Snippet to be used make compatible shortlinks
 © 2020 Jason Chua, Connor Coddington
 
 Changelog:
@@ -9,11 +9,15 @@ Changelog:
 */
 function l4s_shortlink_hook() {
 
-    // Post object if needed
-    // global $post;
+	//Bug: Generates shortlinks on category and author pages. Those are not in spec
+	// Post object if needed
+	// global $post;
 
-    // Page conditional if needed
-    // if( is_page() ){}
+	// Page conditional if needed
+	// if( is_page() ){}
+
+	//We calculate both shortlinks, with or without slug
+	//Some cases, slug based fails
      $a = l4s_get_shortlink( $id = 0, $context = 'post', true );
      $b = l4s_get_shortlink( $id = 0, $context = 'post', false );
      ?>
@@ -23,17 +27,21 @@ function l4s_shortlink_hook() {
      <?php
      if (strcmp($a, $b) != 0) {
           ?>
-
                <link rel="shortlink" type="text/html" href="<?php  echo $b ?>">
       
           <?php
      }
 
 }
+
+//Hooks into the HTML header
+//NOT HTTP Header
 add_action( 'wp_head', 'l4s_shortlink_hook' );
 
+//Encodes given id to shortened form
 if ( !function_exists( 'l4s_encode' ) ) {
 	function l4s_encode( $num ) {
+		//only readable characters and numbers are used
 		$index = '23456789abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
           $out = "";
 
@@ -47,10 +55,10 @@ if ( !function_exists( 'l4s_encode' ) ) {
 	}
 }
 
+//Splits between different types of links and returns completed shortlink
+//Borrows from https://github.com/Automattic/jetpack/blob/master/modules/shortlinks.php
 function l4s_get_shortlink( $id = 0, $context = 'post', $allow_slugs = true ) {
 	global $wp_query;
-
-	$blog_id = Jetpack_Options::get_option( 'id' );
 
 	if ( 'query' == $context ) {
 		if ( is_singular() ) {
@@ -65,9 +73,6 @@ function l4s_get_shortlink( $id = 0, $context = 'post', $allow_slugs = true ) {
 
      //Homepage
 	if ( 'blog' == $context ) {
-		if ( empty( $id ) )
-			$id = $blog_id;
-
 		return 'https://l4s.me/' . l4s_encode( $id );
 	}
 
@@ -102,6 +107,7 @@ function l4s_get_shortlink( $id = 0, $context = 'post', $allow_slugs = true ) {
 
 	if ( empty( $type ) )
 		return '';
-
+	
+	//Final shortlink
 	return 'https://l4s.me/' . $type . $id;
 }

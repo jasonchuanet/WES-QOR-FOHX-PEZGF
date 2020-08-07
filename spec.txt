@@ -1,0 +1,46 @@
+Useful Bits:
+     https://github.com/Automattic/jetpack/blob/master/modules/shortlinks.php
+     "23456789abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ" - Distinguishable Characters
+     https://lowrey.me/encoding-decoding-base-62-in-es6-javascript/
+     
+wp.me example:
+     https://wp.me/ p aErsY - Bq
+     Notice
+          Domain: https://wp.me/
+          Type: p (post)
+          BlogID: aErsY (Layers.Media)
+          PostID: Bq (class-of-2024-meets-early-on-instagram)
+
+Idea:
+     Since we are using a domain exclusively, we don't need a blogID
+     https://l4s.me/p-2117
+Letter:    
+     s - slug - Assume
+     p - post - A (Article)
+     P - Page - P (Page)
+     a - attachment - M 
+ 
+     Possible Control Characters:
+          Any Uppercase
+          - Symbols
+     All url Characters: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~:/?#[]@!$&’()*+,;%
+
+Destination Example:
+https://layers.media/?p=2117 //Page with ID 2117
+
+class-of-2024-meets-early-on-instagram
+
+Both go to the same place
+     https://wp.me/paErsY-Bq
+     https://wp.me/saErsY-class-of-2024-meets-early-on-instagram
+Notice
+     The p - postID
+     The s - slug
+     The a - attachment
+     Aiming for:
+          https://l4s.me/AKs -> https://layers.media/2020/05/class-of-2024-meets-early-on-instagram/
+          https://l4s.me/class-of-2024-meets-early-on-instagram -> https://layers.media/2020/05/class-of-2024-meets-early-on-instagram/
+          Assume slug
+
+     https://wp.me/saErsY-scantron
+

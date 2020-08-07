@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+     Click around. You never know what you might find ;)
+-->
+<head>
+     <style type="text/css">
+          * {
+               font-family: 'Courier New', Courier, monospace;
+               color: #20C20E;
+               font-size: 1rem;
+               line-height: 1em;
+               margin: 0 0 0 0;
+          }
+
+          a {
+               color: #8100a8;
+               /*Layers Media Purple*/
+          }
+
+          h1 {
+               color: white;
+          }
+
+          h2 {
+               color: lightgray;
+          }
+
+          h2::before {
+               content: "- ";
+          }
+
+          h3 {
+               color: darkgray;
+          }
+
+          h3::before {
+               content: "-- ";
+          }
+
+          body {
+               padding: 2em;
+               min-height: calc(100vh - 4em);
+               background-color: black;
+               overflow-x: hidden;
+               display: grid;
+               grid-template-columns: auto;
+               grid-template-rows: 1fr auto;
+               grid-template-areas:
+                    "main"
+                    "footer";
+          }
+
+          @media only screen and (max-width: 600px) {
+               main {
+                    max-width: unset;
+               }
+
+               body {
+                    padding: 0.5em;
+                    min-height: calc(100vh - 2em);
+               }
+          }
+
+          main {
+               grid-area: main;
+               max-width: 30em;
+          }
+
+          footer {
+               grid-area: footer;
+               height: 2.5em;
+          }
+     </style>
+</head>
+
+<body>
+     <main>
+          <h1>What?</h1>
+          <p>
+               <a href="https://layers.media/">Layers Media</a> uses the l4s.me domain as a URL shortener.
+          </p>
+          <h1>Why?</h1>
+          <p>
+               This is a summer project for personal development.
+               L4s is an numeronym of Layers.
+               Short URLs are useful for sharing physically or via QR code.
+          </p>
+          <h1>Who? When? Where?</h1>
+          <p>
+               Jason Chua, Connor Coddington at their homes during the first summer of the COVID-19 Pandemic.
+          </p>
+          <!--TODO-->
+     </main>
+     <footer>
+          <p>Made with 💚 in Florida</p>
+          <a href="https://layers.media/contact/">Contact</a>
+     </footer>
+     <script type="text/javascript">
+          let n = 10
+          document.getElementsByTagName("body")[0].addEventListener("click", function () {
+               if (n % 2 === 0) {
+                    const test = "PHA+TWFkZSB3aXRoIPCfpI0gaW4gRmxvcmlkYTwvcD4KPGEgaHJlZj0iaHR0cHM6Ly9sYXllcnMubWVkaWEvY29udGFjdC8iPkNvbnRhY3Q8L2E+";
+                    document.getElementsByTagName("footer")[0].innerHTML = atou(test);
+               }
+               if (n % 2 === 1) {
+                    const test = "PHA+TWFkZSB3aXRoIPCfkpogaW4gRmxvcmlkYTwvcD48YSBocmVmPSJodHRwczovL2xheWVycy5tZWRpYS9jb250YWN0LyI+Q29udGFjdDwvYT4=";
+                    document.getElementsByTagName("footer")[0].innerHTML = atou(test);
+               }
+               n -= 1;
+               //Change Footer to have different color heart
+               if (n === 0) {
+                    const test = "PGgxPkhvdz88L2gxPjxoMj5CYWNrZ3JvdW5kPC9oMj48cD5Xb3JkcHJlc3MgaGFzIHR3byBmb3JtcyBvZiBpbmRleGluZyBjb250ZW50cyBvZiBhIHdlYnBhZ2UuIFRoZSBmaXJzdCBtZXRob2QgaXMgdGhlIHNsdWcuIEEgc2x1ZyBjb250YWluc3RoZSBmdWxsIHRpdGxlIG9mIHRoZSBhcnRpY2xlLiBTbHVncyBvbiBXb3JkcHJlc3MgY2FuIG5vdCBpbmNsdWRlIHVwcGVyIGNhc2UgbGV0dGVycyBvciBzdGFydCB3aXRoIGEgaHlwaGVuLiBUaGUgb3RoZXIgbWV0aG9kIGZvciBpbmRleGluZyBjb250ZW50IGlzIHRocm91Z2ggSUQncy4gVGhlcmUgYXJlIHRocmVlIHR5cGVzIG9mIElEJ3M6IFBvc3QgKEEpLCBQYWdlIChQKSwgYW5kIEF0dGFjaG1lbnQgKE0pLiBJZiB0aGUgZmlyc3QgY2hhcmFjdGVyIGluIHRoZSBzaG9ydCBsaW5rIGlzIG9uIG9mIHRoZSBjYXBpdGFsIGxldHRlcnMgYWJvdmUsIHdlIGtub3cgdGhlIGNvbnRlbnRzIHdpbGwgYmUgdGhlIElEIHRvIGEgcG9zdCwgcGFnZSwgb3IgYXR0YWNobWVudC48L3A+IDxoMj5FbmNvZGluZzwvaDI+PHA+VGhlIGZpcnN0IGxldHRlciBvZiBhIHNob3J0IFVSTCBzaWduaWZpZXMgdGhlIHR5cGUgb2YgcGFnZS4gQmFzZTU2IGVuY29kaW5nIGlzIHVzZWQgZm9yIHRoZSBudW1lcmljYWwgSUQuIEFtYmlndW91cyBjaGFyYWN0ZXJzIGFyZSBvbWl0dGVkIHRvIGFpZCBzaGFyaW5nLiBXaXRoIHRob3NlIHR3byBwaWVjZXMgb2YgaW5mb3JtYXRpb24sIGVhY2ggcGFnZSBjYW4gYmUgdW5pcXVlbHkgaWRlbnRpZmllZCBhbmQgYWNjZXNzZWQgdmlhIHBsYWluIHBlcm1hbGluay4gSWYgYSB3ZWJzaXRlIHVzZXMgYSBtb3JlIGFlc3RoZXRpYyBwZXJtYWxpbmsgc2NoZW1lLCBpdCBpcyBhdXRvbWF0aWNhbGx5IHJlZGlyZWN0ZWQuPC9wPjxoMj5BcmNoaXRlY3R1cmU8L2gyPjxwPk91ciBpbXBsZW1lbnRhdGlvbiBjb25zaXN0cyBvZiB0d28gc2VwYXJhdGUgcGFydHM6IGEgUEhQIHNuaXBwZXQgcnVubmluZyBvbiBXb3JkcHJlc3MsIGFuZCBhIENsb3VkZmxhcmUgV29ya2VyPGgzPlBIUDwvaDM+PHA+VGhlIHJvbGUgb2YgdGhlIFBIUCBzbmlwcGV0IGlzIHRvIGNhbGN1bGF0ZSBhbmQgbWFrZSBhY2Nlc3NpYmxlIHRoZSBzaG9ydGxpbmsuIE5vdGljZSB0aGUgd29yZCBjaG9pY2UgLSB0aGVyZSBpcyBubyBnZW5lcmF0aW9uIG9mIHNob3J0bGlua3Mgc2luY2UgZWFjaCB3ZWJwYWdlIGNhbiBoYXZlIGF0IG1vc3QgMiBzb3J0bGlua3MgdGhhdCBjb3JyZXNwb25kLiBUaGUgcmVzdWx0IGlzIHBsYWNlZCBpbiB0aGUgSFRNTCBoZWFkLCB3aGVyZSBpdCBpcyBhY2Nlc3NpYmxlIGJ1dCBub3QgaW50cnVzaXZlLjwvcD4gPGgzPkNsb3VkZmxhcmUgV29ya2VyPC9oMz4gPHA+Q2xvdWRmbGFyZSB3b3JrZXJzIGlzIGEgcHJvZHVjdCB0aGF0IHJ1bnMgYXQgbWFueSBsb2NhdGlvbnMgZ2xvYmFsbHksIGFsbG93aW5nIGZvciBhIGZhc3QgcmVzcG9uc2UgdGltZS4gVGhpcyBzb2x1dGlvbiBpcyBiZXR0ZXIgdGhhbiBhIHRyYWRpdGlvbmFsIFVSTCBzaG9ydGVuZXIgYmVjYXVzZSB0aGVyZSBhcmUgbm8gZGF0YWJhc2UgbG9va3Vwcy4gV2hlbiBhIFVSTCBpcyBlbnRlcmVkLCBpdCBnb2VzIHRocm91Z2ggYSBiYXNlIDU2IGRlY29kZS4gVGhlIGNvbnRlbnRzIGFyZSBzcGxpdCBpbnRvIHRoZWlyIHR5cGUgYW5kIHRoIElEIGlzIGFwcGVuZGVkIHRvIHRoZSBMYXllcnMgTWVkaWEgd2Vic2l0ZS4gVGhlIHVzZXIgaXMgcXVpY2tseSByZWRpcmVjdGVkIHRoZSB0aGUgY29ycmVzcG9uZGluZyBMYXllcnMgTWVkaWEgaW5mb3JtYXRpb24uPC9wPiA8YSBocmVmPSJodHRwczovL2dpdGh1Yi5jb20vcmViZWwxODA0L1dFUy1RT1ItRk9IWC1QRVpHRiI+VGhlIENvZGU8L2E+";
+                    document.getElementsByTagName("main")[0].innerHTML += atou(test);
+               }
+          });
+          //After 10, we change the contents of main to include "how"
+          //Append HTML (Encode base64)
+          //Encode
+          function utoa(str) {
+               return window.btoa(unescape(encodeURIComponent(str)));
+          }
+          //Decode
+          function atou(str) {
+               return decodeURIComponent(escape(window.atob(str)));
+          }
+     </script>
+</body>

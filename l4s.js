@@ -1,3 +1,13 @@
+/*
+l4s.me link shortening worker
+Cloudflare worker, JS
+Use on route:
+     *l4s.me*
+© 2020 Jason Chua, Connor Coddington
+
+Changelog:
+07.2020 - Initial Creation
+*/
 async function handleRequest(request) {
      const status_code = 301; //Perma Redirect
      const hostname = "https://" + HOSTNAME;
@@ -72,6 +82,8 @@ const baseN = {
      charset: '23456789abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
           .split(''),
      N: 56,
+     //We dont use encode here, but its copy and pasted
+     //https://lowrey.me/encoding-decoding-base-62-in-es6-javascript/
      encode: integer => {
           if (integer === 0) {
                return 0;
@@ -87,38 +99,11 @@ const baseN = {
           prev + (baseN.charset.indexOf(curr) * (baseN.N ** i)), 0)
 };
 /*
-Some IDs
+Some IDs (Worked Example)
 Post 2368 -> Li
      l4s.me/ALi
-Atchment 2114 -> FL
+Attachment 2114 -> FL
      l4s.me/MFL
 Page 77 ->3p
      l4s.me/P3p
-
-
-function l4s_num_decode( input ) {
-     num = input
-     return num
-}
-
-function l4s_num_encode( num ) {
-     const index = "23456789abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ"
-     const len = 52 //index.length
-     let out = "";
-
-     //I dont know why a number would be negative
-     if ( num < 0 ) {
-          out = '-';
-          num = abs( num );
-     }
-
-     for ( t = floor( log10( num ) / log10( len ) ); t >= 0; t-- ) {
-          a = floor( num / pow( len, t ) );
-          out = out . substr( index, a, 1 );
-          num = num - ( a * pow( len, t ) );
-     }
-
-     return out;
-}
-
 */
