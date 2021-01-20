@@ -1,4 +1,3 @@
-<?php
 /*
 l4s.me link shortening module
 PHP Snippet to be used make compatible shortlinks
@@ -6,18 +5,15 @@ PHP Snippet to be used make compatible shortlinks
 
 Changelog:
 07.2020 - Initial Creation
+01.2021 - Proper Shortlink Hooks
 */
 function l4s_shortlink_hook() {
 
-	//Bug: Generates shortlinks on category and author pages. Those are not in spec
-	// Post object if needed
-	// global $post;
+    // Post object if needed
+    // global $post;
 
-	// Page conditional if needed
-	// if( is_page() ){}
-
-	//We calculate both shortlinks, with or without slug
-	//Some cases, slug based fails
+    // Page conditional if needed
+    // if( is_page() ){}
      $a = l4s_get_shortlink( $id = 0, $context = 'post', true );
      $b = l4s_get_shortlink( $id = 0, $context = 'post', false );
      ?>
@@ -27,21 +23,17 @@ function l4s_shortlink_hook() {
      <?php
      if (strcmp($a, $b) != 0) {
           ?>
+
                <link rel="shortlink" type="text/html" href="<?php  echo $b ?>">
       
           <?php
      }
 
 }
-
-//Hooks into the HTML header
-//NOT HTTP Header
 add_action( 'wp_head', 'l4s_shortlink_hook' );
 
-//Encodes given id to shortened form
 if ( !function_exists( 'l4s_encode' ) ) {
 	function l4s_encode( $num ) {
-		//only readable characters and numbers are used
 		$index = '23456789abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
           $out = "";
 
@@ -107,7 +99,13 @@ function l4s_get_shortlink( $id = 0, $context = 'post', $allow_slugs = true ) {
 
 	if ( empty( $type ) )
 		return '';
-	
 	//Final shortlink
 	return 'https://l4s.me/' . $type . $id;
+}
+
+//Override the shortlink wordpress style
+add_filter( 'pre_get_shortlink', 'l4s_get_shortlink_handler', 10, 4 );
+
+function l4s_get_shortlink_handler( $shortlink, $id, $context, $allow_slugs ) {
+	return l4s_get_shortlink( $id, $context, $allow_slugs );
 }
